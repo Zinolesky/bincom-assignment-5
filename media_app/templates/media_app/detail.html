@@ -28,6 +28,8 @@
                     <h4 class="text-white mb-3">{{ item.title }}</h4>
                     <audio controls class="w-100 mt-2">
                         <source src="{{ item.media_file.url }}" type="audio/mpeg">
+                          <source src="{{ item.media_file.url }}" type="audio/mp4">
+                          <source src="{{ item.media_file.url }}">
                         Your browser does not support the audio element.
                     </audio>
                 </div>

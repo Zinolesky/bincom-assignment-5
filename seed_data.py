@@ -1,7 +1,7 @@
 """
 Comprehensive Seeder for 'The Road to Python' Multimedia Platform.
 
-Ordered Learning Roadmap:
+Ordered Learning Roadmap (Video + Audio Streams):
   Phase 1: Python Core Mastery (Step 1)
   Phase 2: Database Design & SQL (Steps 2-4)
   Phase 3: Web Frontend - HTML & CSS (Steps 5-9)
@@ -12,6 +12,8 @@ Ordered Learning Roadmap:
   Phase 8: Mobile & Touch Interfaces - Kivy (Steps 39-44)
   Phase 9: Low-Level Systems & C++ Bonus (Step 45)
 
+All 45 roadmap lessons are available both as Full Videos and as Audio Streams (playable via HTML5 audio),
+enabling listening on the go without requiring additional disk storage.
 Plus:
   - Developer Cheat Sheets (Images)
   - Python Mastery Podcast Episodes (Audio MP3)
@@ -51,9 +53,9 @@ def find_rel_file(subfolder, pattern):
 
 
 def seed():
-    safe_print("=" * 70)
-    safe_print("Seeding 'The Road to Python' Complete 9-Phase Full-Stack Roadmap...")
-    safe_print("=" * 70)
+    safe_print("=" * 75)
+    safe_print("Seeding 'The Road to Python' Full-Stack Curriculum (Video + Audio Streams)...")
+    safe_print("=" * 75)
 
     MediaItem.objects.all().delete()
     Category.objects.all().delete()
@@ -115,7 +117,7 @@ def seed():
         description="Deep-dive audio episodes on roadmap milestones, microservices, and time complexity."
     )
 
-    # 2. Roadmap Video Curriculum
+    # 2. Roadmap Video & Audio Curriculum (45 Steps)
     roadmap_items = [
         # PHASE 1: Python Core Mastery
         {
@@ -541,9 +543,13 @@ def seed():
         },
     ]
 
+    safe_print("Inserting 45 Video Roadmap Steps + 45 Audio Stream Roadmap Lessons...")
     for item in roadmap_items:
         rel_file = find_rel_file(item["sub"], item["pat"])
-        m = MediaItem.objects.create(
+        clean_topic = item["title"].split(": ", 1)[-1] if ": " in item["title"] else item["title"]
+
+        # 1. Video Lesson
+        m_video = MediaItem.objects.create(
             title=item["title"],
             description=item["desc"],
             media_type="video",
@@ -552,7 +558,21 @@ def seed():
             step_number=item["step"],
             views_count=item["views"],
         )
-        safe_print(f"  [Step {m.step_number:02d}] {m.title}")
+        safe_print(f"  [Video Step {m_video.step_number:02d}] {m_video.title}")
+
+        # 2. Audio Stream Lesson (Option 1: Stream audio track directly from same MP4 container)
+        audio_title = f"Audio Lesson {item['step']:02d}: {clean_topic} (Audio Stream)"
+        audio_desc = f"Listen on the go: streaming the full audio lesson for Step {item['step']}. {item['desc']}"
+        m_audio = MediaItem.objects.create(
+            title=audio_title,
+            description=audio_desc,
+            media_type="audio",
+            category=item["cat"],
+            media_file=rel_file,
+            step_number=item["step"],
+            views_count=int(item["views"] * 0.45) + 30,
+        )
+        safe_print(f"  [Audio Step {m_audio.step_number:02d}] {m_audio.title}")
 
     # 3. Developer Cheat Sheets (Images)
     cheat_sheets = [
@@ -623,11 +643,13 @@ def seed():
 
     total = MediaItem.objects.count()
     videos = MediaItem.objects.filter(media_type='video').count()
-    safe_print("=" * 70)
-    safe_print(f"Seeding completed successfully!")
+    audios = MediaItem.objects.filter(media_type='audio').count()
+    safe_print("=" * 75)
+    safe_print("Seeding completed successfully!")
     safe_print(f"  Total Roadmap Video Steps: {videos}")
+    safe_print(f"  Total Roadmap Audio Steps: {audios}")
     safe_print(f"  Total Multimedia Items:    {total}")
-    safe_print("=" * 70)
+    safe_print("=" * 75)
 
 
 if __name__ == "__main__":
