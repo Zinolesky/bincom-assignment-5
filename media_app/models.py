@@ -33,11 +33,12 @@ class MediaItem(models.Model):
     )
     media_file = models.FileField(upload_to='multimedia/%Y/%m/')
     thumbnail = models.ImageField(upload_to='thumbnails/%Y/%m/', blank=True, null=True)
+    step_number = models.PositiveIntegerField(default=0, help_text="Order in roadmap sequence (0 for non-roadmap items)")
     views_count = models.PositiveIntegerField(default=0)
     uploaded_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-uploaded_at']
+        ordering = ['step_number', '-uploaded_at']
 
     def __str__(self):
         return f"{self.title} ({self.get_media_type_display()})"

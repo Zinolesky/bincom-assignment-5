@@ -4,16 +4,18 @@
 
 {% block content %}
 <div class="row align-items-center mb-4">
-    <div class="col-md-6">
-        <h1 class="h2 fw-bold text-white mb-1">Multimedia Collection</h1>
-        <p class="text-secondary mb-0">Browse through high-quality audio, video, and image assets.</p>
+    <div class="col-md-7">
+        <h1 class="h2 fw-bold text-white mb-1">
+            <span class="text-warning">The Road to Python</span> Learning Curriculum
+        </h1>
+        <p class="text-secondary mb-0">Follow the structured sequence: SQL &rarr; Flask &rarr; Qt &rarr; Kivy &rarr; Optional C++ bonus, plus cheat sheets and podcasts.</p>
     </div>
-    <div class="col-md-6 mt-3 mt-md-0">
+    <div class="col-md-5 mt-3 mt-md-0">
         <form method="GET" action="{% url 'media_gallery' %}" class="d-flex gap-2">
             {% if selected_type %}
                 <input type="hidden" name="type" value="{{ selected_type }}">
             {% endif %}
-            <input type="text" name="q" class="form-control bg-dark text-white border-secondary" placeholder="Search by title..." value="{{ search_query|default:'' }}">
+            <input type="text" name="q" class="form-control bg-dark text-white border-secondary" placeholder="Search roadmap, cheat sheets, or podcasts..." value="{{ search_query|default:'' }}">
             <button type="submit" class="btn btn-outline-primary">
                 <i class="bi bi-search"></i>
             </button>
@@ -28,22 +30,22 @@
 <ul class="nav nav-pills mb-4 pb-2 border-bottom border-secondary border-opacity-25 gap-2">
     <li class="nav-item">
         <a class="nav-link {% if not selected_type %}active{% endif %}" href="{% url 'media_gallery' %}">
-            <i class="bi bi-collection-play me-1"></i> All Media ({{ total_count }})
-        </a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link {% if selected_type == 'image' %}active{% endif %}" href="?type=image{% if search_query %}&q={{ search_query }}{% endif %}">
-            <i class="bi bi-image me-1"></i> Images
+            <i class="bi bi-compass me-1"></i> Full Curriculum ({{ total_count }})
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link {% if selected_type == 'video' %}active{% endif %}" href="?type=video{% if search_query %}&q={{ search_query }}{% endif %}">
-            <i class="bi bi-camera-video me-1"></i> Videos
+            <i class="bi bi-play-circle-fill me-1"></i> Roadmap Videos
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {% if selected_type == 'image' %}active{% endif %}" href="?type=image{% if search_query %}&q={{ search_query }}{% endif %}">
+            <i class="bi bi-file-earmark-code-fill me-1"></i> Developer Cheat Sheets
         </a>
     </li>
     <li class="nav-item">
         <a class="nav-link {% if selected_type == 'audio' %}active{% endif %}" href="?type=audio{% if search_query %}&q={{ search_query }}{% endif %}">
-            <i class="bi bi-music-note-beamed me-1"></i> Audio / Podcasts
+            <i class="bi bi-mic-fill me-1"></i> Podcasts &amp; Audio
         </a>
     </li>
 </ul>

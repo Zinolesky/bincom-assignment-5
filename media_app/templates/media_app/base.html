@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Bincom Multimedia Hub{% endblock %}</title>
+    <title>{% block title %}The Road to Python | Multimedia Learning Platform{% endblock %}</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
@@ -67,7 +67,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary border-opacity-25 py-3 sticky-top">
         <div class="container">
             <a class="navbar-brand fs-4" href="{% url 'media_gallery' %}">
-                <i class="bi bi-play-circle-fill me-2"></i>Bincom Multimedia
+                <i class="bi bi-compass-fill me-2 text-warning"></i>The Road to Python
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                 <span class="navbar-toggler-icon"></span>
@@ -76,12 +76,12 @@
                 <ul class="navbar-nav ms-auto align-items-center gap-2">
                     <li class="nav-item">
                         <a class="nav-link text-light" href="{% url 'media_gallery' %}">
-                            <i class="bi bi-grid-fill me-1"></i> Gallery
+                            <i class="bi bi-mortarboard-fill me-1"></i> Roadmap &amp; Gallery
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="btn btn-primary px-3 rounded-pill" href="{% url 'upload_media' %}">
-                            <i class="bi bi-cloud-arrow-up-fill me-1"></i> Upload Media
+                            <i class="bi bi-cloud-arrow-up-fill me-1"></i> Add Resource
                         </a>
                     </li>
                     <li class="nav-item">
@@ -109,7 +109,7 @@
 
     <footer class="py-4 text-center text-secondary small">
         <div class="container">
-            Bincom Python Assessment 5 &bull; Multimedia Django Web Application &bull; Built by Efezino Prince Taigbenu
+            <strong>The Road to Python</strong> &bull; Complete Developer Multimedia Curriculum &bull; Built by Efezino Prince Taigbenu
         </div>
     </footer>
 
