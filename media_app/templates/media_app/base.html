@@ -1,9 +1,12 @@
-<!DOCTYPE html>
+{% load static %}<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}The Road to Python | Multimedia Learning Platform{% endblock %}</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
@@ -25,6 +28,12 @@
             background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .navbar-logo-img {
+            height: 38px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
         }
         .card {
             background-color: #1e293b;
@@ -64,10 +73,11 @@
     {% block extra_head %}{% endblock %}
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary border-opacity-25 py-3 sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary border-opacity-25 py-2 sticky-top shadow-sm">
         <div class="container">
-            <a class="navbar-brand fs-4" href="{% url 'media_gallery' %}">
-                <i class="bi bi-compass-fill me-2 text-warning"></i>The Road to Python
+            <a class="navbar-brand fs-4 d-flex align-items-center" href="{% url 'media_gallery' %}">
+                <img src="{% static 'images/logo_icon.png' %}" alt="The Road to Python Logo" class="navbar-logo-img me-2 rounded-2">
+                <span>The Road to Python</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
                 <span class="navbar-toggler-icon"></span>
@@ -108,8 +118,12 @@
     </main>
 
     <footer class="py-4 text-center text-secondary small">
-        <div class="container">
-            <strong>The Road to Python</strong> &bull; Complete Developer Multimedia Curriculum &bull; Built by Efezino Prince Taigbenu
+        <div class="container d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2">
+                <img src="{% static 'images/logo_icon.png' %}" alt="Logo" height="24" class="rounded">
+                <span><strong>The Road to Python</strong> &bull; Complete Developer Multimedia Curriculum</span>
+            </div>
+            <div>Built by Efezino Prince Taigbenu</div>
         </div>
     </footer>
 

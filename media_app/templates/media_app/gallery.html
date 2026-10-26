@@ -3,26 +3,32 @@
 {% block title %}Multimedia Gallery | Bincom{% endblock %}
 
 {% block content %}
-<div class="row align-items-center mb-4">
-    <div class="col-md-7">
-        <h1 class="h2 fw-bold text-white mb-1">
-            <span class="text-warning">The Road to Python</span> Learning Curriculum
-        </h1>
-        <p class="text-secondary mb-0">Follow the structured 9-phase sequence: Python Core &rarr; SQL &rarr; HTML/CSS &rarr; JavaScript &rarr; Flask &rarr; Django &rarr; Qt &rarr; Kivy &rarr; Optional C++ bonus, plus cheat sheets and podcasts.</p>
-    </div>
-    <div class="col-md-5 mt-3 mt-md-0">
-        <form method="GET" action="{% url 'media_gallery' %}" class="d-flex gap-2">
-            {% if selected_type %}
-                <input type="hidden" name="type" value="{{ selected_type }}">
-            {% endif %}
-            <input type="text" name="q" class="form-control bg-dark text-white border-secondary" placeholder="Search roadmap, cheat sheets, or podcasts..." value="{{ search_query|default:'' }}">
-            <button type="submit" class="btn btn-outline-primary">
-                <i class="bi bi-search"></i>
-            </button>
-            {% if search_query or selected_type %}
-                <a href="{% url 'media_gallery' %}" class="btn btn-outline-secondary">Reset</a>
-            {% endif %}
-        </form>
+{% load static %}
+<div class="card bg-dark border-secondary border-opacity-25 mb-4 p-4 shadow-sm" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.98));">
+    <div class="row align-items-center g-3">
+        <div class="col-auto d-none d-sm-block">
+            <img src="{% static 'images/logo_badge.png' %}" alt="The Road to Python Logo" class="rounded-3 shadow" style="height: 95px; width: auto; object-fit: contain;">
+        </div>
+        <div class="col-md">
+            <h1 class="h2 fw-bold text-white mb-1">
+                <span class="text-warning">The Road to Python</span> Learning Curriculum
+            </h1>
+            <p class="text-secondary mb-0">Follow the structured 9-phase sequence: Python Core &rarr; SQL &rarr; HTML/CSS &rarr; JavaScript &rarr; Flask &rarr; Django &rarr; Qt &rarr; Kivy &rarr; Optional C++ bonus, plus cheat sheets and podcasts.</p>
+        </div>
+        <div class="col-lg-4 col-md-5 mt-3 mt-md-0">
+            <form method="GET" action="{% url 'media_gallery' %}" class="d-flex gap-2">
+                {% if selected_type %}
+                    <input type="hidden" name="type" value="{{ selected_type }}">
+                {% endif %}
+                <input type="text" name="q" class="form-control bg-dark text-white border-secondary" placeholder="Search roadmap, cheat sheets, or podcasts..." value="{{ search_query|default:'' }}">
+                <button type="submit" class="btn btn-outline-primary">
+                    <i class="bi bi-search"></i>
+                </button>
+                {% if search_query or selected_type %}
+                    <a href="{% url 'media_gallery' %}" class="btn btn-outline-secondary">Reset</a>
+                {% endif %}
+            </form>
+        </div>
     </div>
 </div>
 
