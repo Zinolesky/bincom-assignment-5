@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 700" width="1000" height="700">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f172a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1e293b;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="1000" height="700" fill="url(#bg)"/>
+  
+  <!-- Header -->
+  <rect x="30" y="30" width="940" height="70" rx="10" fill="#3b82f6" fill-opacity="0.2" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="50" y="75" fill="#38bdf8" font-family="'Courier New', monospace" font-size="28" font-weight="bold">🐍 Python 3 Core Syntax &amp; Data Structures Cheat Sheet</text>
+
+  <!-- Box 1: Data Types -->
+  <g transform="translate(30, 120)">
+    <rect width="450" height="260" rx="8" fill="#1e293b" stroke="#475569"/>
+    <text x="20" y="35" fill="#f59e0b" font-family="sans-serif" font-size="18" font-weight="bold">1. Primary Data Types</text>
+    <text x="20" y="70" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">x = 42                 # Integer</text>
+    <text x="20" y="95" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">pi = 3.14159           # Float</text>
+    <text x="20" y="120" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">name = "Bincom"        # String (str)</text>
+    <text x="20" y="145" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">is_active = True       # Boolean</text>
+    <text x="20" y="170" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">empty_val = None       # NoneType</text>
+    <text x="20" y="205" fill="#38bdf8" font-family="'Courier New', monospace" font-size="13"># Type casting: int("10"), str(25), float(5)</text>
+    <text x="20" y="230" fill="#38bdf8" font-family="'Courier New', monospace" font-size="13"># Formatting: f"Hello, {name}! Value: {x}"</text>
+  </g>
+
+  <!-- Box 2: Collections -->
+  <g transform="translate(520, 120)">
+    <rect width="450" height="260" rx="8" fill="#1e293b" stroke="#475569"/>
+    <text x="20" y="35" fill="#10b981" font-family="sans-serif" font-size="18" font-weight="bold">2. Collections &amp; Mutability</text>
+    <text x="20" y="70" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">nums = [1, 2, 3]       # List (Mutable, Ordered)</text>
+    <text x="20" y="95" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">point = (10, 20)       # Tuple (Immutable, Ordered)</text>
+    <text x="20" y="120" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">tags = {"py", "web"}   # Set (Unique, Unordered)</text>
+    <text x="20" y="145" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14">user = {"id": 1}       # Dict (Key-Value, Fast O(1))</text>
+    <text x="20" y="180" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13">nums.append(4)         # Add to end</text>
+    <text x="20" y="205" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13">nums[1:3]              # Slicing: [2, 3]</text>
+    <text x="20" y="230" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13">user.get("role", "dev")# Safe key lookup</text>
+  </g>
+
+  <!-- Box 3: Control Flow & Comprehensions -->
+  <g transform="translate(30, 410)">
+    <rect width="450" height="260" rx="8" fill="#1e293b" stroke="#475569"/>
+    <text x="20" y="35" fill="#ec4899" font-family="sans-serif" font-size="18" font-weight="bold">3. Control Flow &amp; Comprehensions</text>
+    <text x="20" y="70" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14"># If / Elif / Else</text>
+    <text x="20" y="95" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13">if score &gt;= 90: grade = "A"</text>
+    <text x="20" y="120" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13">elif score &gt;= 80: grade = "B"</text>
+    <text x="20" y="145" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13">else: grade = "C"</text>
+    <text x="20" y="185" fill="#94a3b8" font-family="'Courier New', monospace" font-size="14"># List Comprehension</text>
+    <text x="20" y="210" fill="#a78bfa" font-family="'Courier New', monospace" font-size="13">evens = [x for x in range(10) if x % 2 == 0]</text>
+    <text x="20" y="235" fill="#a78bfa" font-family="'Courier New', monospace" font-size="13">squared = {x: x**2 for x in nums}</text>
+  </g>
+
+  <!-- Box 4: Functions & Generators -->
+  <g transform="translate(520, 410)">
+    <rect width="450" height="260" rx="8" fill="#1e293b" stroke="#475569"/>
+    <text x="20" y="35" fill="#818cf8" font-family="sans-serif" font-size="18" font-weight="bold">4. Functions, Lambda &amp; Generators</text>
+    <text x="20" y="70" fill="#94a3b8" font-family="'Courier New', monospace" font-size="13">def greet(name: str = "World") -&gt; str:</text>
+    <text x="40" y="95" fill="#94a3b8" font-family="'Courier New', monospace" font-size="13">return f"Hello {name}"</text>
+    <text x="20" y="130" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13"># Lambda function</text>
+    <text x="20" y="155" fill="#38bdf8" font-family="'Courier New', monospace" font-size="13">square = lambda x: x * x</text>
+    <text x="20" y="190" fill="#cbd5e1" font-family="'Courier New', monospace" font-size="13"># Generator with yield (Memory O(1))</text>
+    <text x="20" y="215" fill="#10b981" font-family="'Courier New', monospace" font-size="13">def count(): yield 1; yield 2</text>
+    <text x="20" y="240" fill="#a78bfa" font-family="'Courier New', monospace" font-size="13">gen = count(); next(gen) # yields 1</text>
+  </g>
+</svg>
