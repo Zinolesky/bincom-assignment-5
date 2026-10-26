@@ -33,6 +33,36 @@
                         Your browser does not support the audio element.
                     </audio>
                 </div>
+            {% elif item.media_type == 'pdf' %}
+                <div class="bg-dark p-3">
+                    <div class="d-flex justify-content-between align-items-center mb-2 px-1">
+                        <span class="text-white small fw-semibold">
+                            <i class="bi bi-file-earmark-pdf-fill text-danger me-1"></i> Interactive PDF Reader
+                        </span>
+                        <div class="d-flex gap-2">
+                            <a href="{{ item.media_file.url }}" target="_blank" class="btn btn-sm btn-outline-light">
+                                <i class="bi bi-arrows-fullscreen me-1"></i> Open in New Tab
+                            </a>
+                            <a href="{{ item.media_file.url }}" download class="btn btn-sm btn-primary">
+                                <i class="bi bi-download me-1"></i> Download
+                            </a>
+                        </div>
+                    </div>
+                    <div class="w-100 rounded overflow-hidden shadow-sm" style="height: 680px; background: #0f172a;">
+                        <object data="{{ item.media_file.url }}" type="application/pdf" width="100%" height="100%">
+                            <iframe src="{{ item.media_file.url }}" width="100%" height="100%" style="border:none;">
+                                <div class="p-5 text-center text-white">
+                                    <i class="bi bi-file-earmark-pdf-fill display-1 text-danger mb-3"></i>
+                                    <h5>PDF Document Preview</h5>
+                                    <p class="text-secondary">Your browser does not support inline PDF viewing.</p>
+                                    <a href="{{ item.media_file.url }}" class="btn btn-primary rounded-pill px-4" download>
+                                        <i class="bi bi-download me-1"></i> Download PDF Document
+                                    </a>
+                                </div>
+                            </iframe>
+                        </object>
+                    </div>
+                </div>
             {% endif %}
         </div>
 
@@ -83,6 +113,10 @@
                                 <img src="{{ rel.media_file.url }}" class="w-100 h-100 object-fit-cover" alt="thumb">
                             {% elif rel.thumbnail %}
                                 <img src="{{ rel.thumbnail.url }}" class="w-100 h-100 object-fit-cover" alt="thumb">
+                            {% elif rel.media_type == 'pdf' %}
+                                <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-danger bg-opacity-25">
+                                    <i class="bi bi-file-earmark-pdf-fill text-danger fs-4"></i>
+                                </div>
                             {% else %}
                                 <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-secondary bg-opacity-25">
                                     <i class="bi bi-play-circle text-white"></i>

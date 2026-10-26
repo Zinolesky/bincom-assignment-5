@@ -15,7 +15,7 @@ def media_gallery(request):
 
     items = MediaItem.objects.all()
 
-    if media_type in ['image', 'video', 'audio']:
+    if media_type in ['image', 'video', 'audio', 'pdf']:
         items = items.filter(media_type=media_type)
 
     if category_slug:

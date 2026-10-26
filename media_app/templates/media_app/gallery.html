@@ -45,8 +45,13 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link {% if selected_type == 'pdf' %}active{% endif %}" href="?type=pdf{% if search_query %}&q={{ search_query }}{% endif %}">
+            <i class="bi bi-file-earmark-pdf-fill me-1 text-danger"></i> PDF Cheat Sheets
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link {% if selected_type == 'image' %}active{% endif %}" href="?type=image{% if search_query %}&q={{ search_query }}{% endif %}">
-            <i class="bi bi-file-earmark-code-fill me-1"></i> Developer Cheat Sheets
+            <i class="bi bi-file-earmark-code-fill me-1"></i> Visual Cheat Sheets
         </a>
     </li>
     <li class="nav-item">
@@ -87,6 +92,17 @@
                     <span class="position-absolute fs-3 text-white bg-dark bg-opacity-75 rounded-circle px-3 py-1">
                         <i class="bi bi-volume-up-fill"></i>
                     </span>
+                {% elif item.media_type == 'pdf' %}
+                    {% if item.thumbnail %}
+                        <img src="{{ item.thumbnail.url }}" class="w-100 h-100 object-fit-cover" alt="{{ item.title }}">
+                    {% else %}
+                        <div class="p-4 text-center">
+                            <i class="bi bi-file-earmark-pdf-fill fs-1 text-danger"></i>
+                        </div>
+                    {% endif %}
+                    <span class="position-absolute fs-3 text-white bg-dark bg-opacity-75 rounded-circle px-3 py-1">
+                        <i class="bi bi-file-earmark-pdf-fill text-danger"></i>
+                    </span>
                 {% endif %}
                 
                 <span class="position-absolute top-0 start-0 m-2 badge-type badge-{{ item.media_type }}">
@@ -106,7 +122,11 @@
                     <span>{{ item.uploaded_at|date:"M d, Y" }}</span>
                 </div>
                 <a href="{% url 'media_detail' item.pk %}" class="btn btn-outline-light btn-sm mt-3 w-100">
-                    View / Play Media <i class="bi bi-arrow-right ms-1"></i>
+                    {% if item.media_type == 'pdf' %}
+                        View / Read PDF <i class="bi bi-file-earmark-text ms-1"></i>
+                    {% else %}
+                        View / Play Media <i class="bi bi-arrow-right ms-1"></i>
+                    {% endif %}
                 </a>
             </div>
         </div>

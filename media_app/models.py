@@ -19,6 +19,7 @@ class MediaItem(models.Model):
         ('image', 'Image'),
         ('video', 'Video'),
         ('audio', 'Audio / Podcast'),
+        ('pdf', 'PDF Cheat Sheet'),
     ]
 
     title = models.CharField(max_length=150)
