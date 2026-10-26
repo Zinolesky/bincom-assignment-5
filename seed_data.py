@@ -641,13 +641,65 @@ def seed():
         )
         safe_print(f"  [Resource - Audio] {m.title}")
 
+    # 5. PDF Cheat Sheets (PDF Documents)
+    pdf_docs = [
+        {
+            "title": "Real Python: Python Pocket Reference Guide",
+            "desc": "Comprehensive 3-page quick reference by Real Python covering data types, string operations, numbers & math, conditionals, loops, functions, OOP classes, exception handling, data structures, comprehensions, file I/O, packages, and idiomatic Pythonic patterns.",
+            "file": "documents/Real_Python_Pocket_Reference.pdf",
+            "thumb": "thumbnails/documents/Real_Python_Pocket_Reference_thumb.jpg",
+            "cat": cat_cheatsheets,
+            "views": 520,
+        },
+        {
+            "title": "SQL & Relational Database Architecture Cheat Sheet",
+            "desc": "Essential 3-page SQL reference guide covering querying single and multiple tables, INNER/LEFT/RIGHT/FULL OUTER joins, set operators (UNION, INTERSECT, MINUS), table & constraint management, triggers, indexes, and aggregate functions.",
+            "file": "documents/SQL_Cheat_Sheet.pdf",
+            "thumb": "thumbnails/documents/SQL_Cheat_Sheet_thumb.jpg",
+            "cat": cat_cheatsheets,
+            "views": 485,
+        },
+        {
+            "title": "Flask Microframework Quick Reference & Django Comparison",
+            "desc": "Concise developer cheat sheet covering Flask application initialization, route handlers, Jinja2 template rendering, session management, project directory structures, and a direct side-by-side transition table comparing Django and Flask patterns.",
+            "file": "documents/Flask_The_Cheat_Sheet.pdf",
+            "thumb": "thumbnails/documents/Flask_The_Cheat_Sheet_thumb.jpg",
+            "cat": cat_cheatsheets,
+            "views": 440,
+        },
+        {
+            "title": "Django Full-Stack Framework Cheat Sheet (by Olivier R.)",
+            "desc": "Comprehensive 8-page Django guide covering virtual environment setup, project creation, database configurations, model definitions, migrations, admin registration, views & URL routing, forms & validation, template tags & filters, user authentication, pagination, and deployment.",
+            "file": "documents/Django_Cheat_Sheet_by_OGR.pdf",
+            "thumb": "thumbnails/documents/Django_Cheat_Sheet_by_OGR_thumb.jpg",
+            "cat": cat_cheatsheets,
+            "views": 610,
+        },
+    ]
+
+    for doc in pdf_docs:
+        m = MediaItem.objects.create(
+            title=doc["title"],
+            description=doc["desc"],
+            media_type="pdf",
+            category=doc["cat"],
+            media_file=doc["file"],
+            thumbnail=doc["thumb"],
+            step_number=0,
+            views_count=doc["views"],
+        )
+        safe_print(f"  [Resource - PDF] {m.title}")
+
+
     total = MediaItem.objects.count()
     videos = MediaItem.objects.filter(media_type='video').count()
     audios = MediaItem.objects.filter(media_type='audio').count()
+    pdfs = MediaItem.objects.filter(media_type='pdf').count()
     safe_print("=" * 75)
     safe_print("Seeding completed successfully!")
     safe_print(f"  Total Roadmap Video Steps: {videos}")
     safe_print(f"  Total Roadmap Audio Steps: {audios}")
+    safe_print(f"  Total PDF Cheat Sheets:    {pdfs}")
     safe_print(f"  Total Multimedia Items:    {total}")
     safe_print("=" * 75)
 
