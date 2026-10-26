@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: bincom_assignment5_web
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+      - media_volume:/app/media
+
+volumes:
+  media_volume:

@@ -1,0 +1,103 @@
+{% extends 'media_app/base.html' %}
+
+{% block title %}{{ item.title }} | Multimedia Player{% endblock %}
+
+{% block content %}
+<div class="row g-4">
+    <div class="col-lg-8">
+        <!-- Player Container -->
+        <div class="card overflow-hidden bg-black border-secondary border-opacity-50 mb-4 shadow">
+            {% if item.media_type == 'image' %}
+                <div class="text-center p-2">
+                    <img src="{{ item.media_file.url }}" class="img-fluid rounded" style="max-height: 550px;" alt="{{ item.title }}">
+                </div>
+            {% elif item.media_type == 'video' %}
+                <video controls autoplay playsinline class="w-100" style="max-height: 550px; background: #000;" {% if item.thumbnail %}poster="{{ item.thumbnail.url }}"{% endif %}>
+                    <source src="{{ item.media_file.url }}" type="video/mp4">
+                    Your browser does not support HTML5 video playback.
+                </video>
+            {% elif item.media_type == 'audio' %}
+                <div class="p-5 text-center bg-dark">
+                    {% if item.thumbnail %}
+                        <img src="{{ item.thumbnail.url }}" class="rounded-circle mb-4 shadow" style="width: 160px; height: 160px; object-fit: cover;" alt="cover">
+                    {% else %}
+                        <div class="rounded-circle bg-secondary bg-opacity-25 d-inline-flex p-4 mb-4">
+                            <i class="bi bi-music-note-beamed text-success display-3"></i>
+                        </div>
+                    {% endif %}
+                    <h4 class="text-white mb-3">{{ item.title }}</h4>
+                    <audio controls class="w-100 mt-2">
+                        <source src="{{ item.media_file.url }}" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Metadata Section -->
+        <div class="card p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                <div>
+                    <span class="badge-type badge-{{ item.media_type }} mb-2 d-inline-block">
+                        {{ item.get_media_type_display }}
+                    </span>
+                    <h2 class="h3 fw-bold text-white mb-1">{{ item.title }}</h2>
+                    <div class="text-secondary small">
+                        <span><i class="bi bi-calendar3 me-1"></i>Uploaded {{ item.uploaded_at|date:"F d, Y" }}</span>
+                        <span class="mx-2">&bull;</span>
+                        <span><i class="bi bi-eye me-1"></i>{{ item.views_count }} views</span>
+                        {% if item.category %}
+                            <span class="mx-2">&bull;</span>
+                            <span class="badge bg-secondary">{{ item.category.name }}</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <div>
+                    <a href="{{ item.media_file.url }}" download class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                        <i class="bi bi-download me-1"></i> Download Asset
+                    </a>
+                </div>
+            </div>
+
+            <hr class="border-secondary border-opacity-25 my-3">
+
+            <h5 class="text-white-50 fs-6 text-uppercase fw-semibold mb-2">Description</h5>
+            <p class="text-light mb-0" style="white-space: pre-line;">
+                {{ item.description|default:"No extended description provided for this media item." }}
+            </p>
+        </div>
+    </div>
+
+    <!-- Related Sidebar -->
+    <div class="col-lg-4">
+        <div class="card p-3">
+            <h5 class="text-white fw-bold mb-3">More {{ item.get_media_type_display }}s</h5>
+            {% if related_items %}
+                <div class="d-flex flex-column gap-3">
+                    {% for rel in related_items %}
+                    <a href="{% url 'media_detail' rel.pk %}" class="d-flex gap-3 text-decoration-none text-light align-items-center p-2 rounded hover-bg">
+                        <div class="bg-black rounded overflow-hidden flex-shrink-0" style="width: 70px; height: 50px;">
+                            {% if rel.media_type == 'image' %}
+                                <img src="{{ rel.media_file.url }}" class="w-100 h-100 object-fit-cover" alt="thumb">
+                            {% elif rel.thumbnail %}
+                                <img src="{{ rel.thumbnail.url }}" class="w-100 h-100 object-fit-cover" alt="thumb">
+                            {% else %}
+                                <div class="w-100 h-100 d-flex align-items-center justify-content-center bg-secondary bg-opacity-25">
+                                    <i class="bi bi-play-circle text-white"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="flex-grow-1 overflow-hidden">
+                            <h6 class="mb-0 text-truncate text-white small fw-semibold">{{ rel.title }}</h6>
+                            <span class="text-secondary small">{{ rel.uploaded_at|date:"M d" }} &bull; {{ rel.views_count }} views</span>
+                        </div>
+                    </a>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="text-secondary small mb-0">No other {{ item.get_media_type_display|lower }}s uploaded yet.</p>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

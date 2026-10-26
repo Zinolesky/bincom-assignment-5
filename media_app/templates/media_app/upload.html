@@ -1,0 +1,70 @@
+{% extends 'media_app/base.html' %}
+
+{% block title %}Upload Media | Bincom Multimedia Hub{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card p-4 p-md-5">
+            <div class="text-center mb-4">
+                <div class="rounded-circle bg-primary bg-opacity-25 d-inline-flex p-3 mb-3">
+                    <i class="bi bi-cloud-arrow-up-fill text-primary display-5"></i>
+                </div>
+                <h2 class="fw-bold text-white mb-1">Upload New Media Asset</h2>
+                <p class="text-secondary small">Share your photography, podcast episodes, or high-definition video clips.</p>
+            </div>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>Please correct the following errors:</strong>
+                    {{ form.errors }}
+                </div>
+                {% endif %}
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-white">Title <span class="text-danger">*</span></label>
+                    {{ form.title }}
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold text-white">Media Type <span class="text-danger">*</span></label>
+                        {{ form.media_type }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold text-white">Category</label>
+                        {{ form.category }}
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-white">Description</label>
+                    {{ form.description }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-semibold text-white">Media File (Image / MP4 Video / MP3 Audio) <span class="text-danger">*</span></label>
+                    {{ form.media_file }}
+                    <div class="form-text text-secondary">Supported formats: JPG, PNG, WEBP, MP4, WEBM, MP3, WAV.</div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-semibold text-white">Poster / Cover Thumbnail (Optional)</label>
+                    {{ form.thumbnail }}
+                    <div class="form-text text-secondary">Recommended for video poster frame or audio album cover art.</div>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary btn-lg rounded-pill">
+                        <i class="bi bi-upload me-1"></i> Publish Media Item
+                    </button>
+                    <a href="{% url 'media_gallery' %}" class="btn btn-outline-secondary rounded-pill">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600">
+      <defs>
+        <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:1" />
+          <stop offset="100%" style="stop-color:#9333ea;stop-opacity:1" />
+        </linearGradient>
+      </defs>
+      <rect width="800" height="600" fill="url(#grad)"/>
+      <circle cx="400" cy="300" r="140" fill="rgba(255,255,255,0.15)" />
+      <text x="50%" y="48%" text-anchor="middle" fill="#ffffff" font-family="sans-serif" font-size="34" font-weight="bold">Bincom Python Assessment 5</text>
+      <text x="50%" y="56%" text-anchor="middle" fill="#e2e8f0" font-family="sans-serif" font-size="20">Django Multimedia Showcase Asset</text>
+    </svg>
